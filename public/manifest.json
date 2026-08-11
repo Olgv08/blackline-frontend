@@ -1,0 +1,17 @@
+{
+  "name": "Black Line Studio",
+  "short_name": "Black Line",
+  "description": "Panel administrativo para estudios de tatuajes",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#17171a",
+  "theme_color": "#17171a",
+  "icons": [
+    {
+      "src": "/icons.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
