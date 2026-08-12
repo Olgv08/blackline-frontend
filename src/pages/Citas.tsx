@@ -305,12 +305,15 @@ export default function Citas() {
             onSelectEvent={(e: any) => openDetail(e.resource)}
             onSelectSlot={(slot: any) => openCreate(slot.start)}
             selectable
+            popup
+            popupOffset={{ x: 10, y: 10 }}
             messages={{
               next: "Sig.",
               previous: "Ant.",
               today: "Hoy",
               month: "Mes",
               noEventsInRange: "No hay citas en este rango.",
+              showMore: (total: number) => `+${total} más`,
             }}
           />
         </main>

@@ -367,6 +367,56 @@
   box-shadow: inset 0 0 0 2px #17171a;
 }
 
+/* Eventos del día: texto truncado en vez de desbordarse a la fila de abajo */
+.rbc-event {
+  padding: 1px 4px !important;
+  font-size: 11.5px;
+}
+
+.rbc-event-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rbc-row-segment {
+  padding: 0 2px 2px;
+}
+
+/* Altura mínima por fila del mes, para que al menos un evento se vea completo */
+.rbc-month-row {
+  min-height: 74px;
+}
+
+/* Enlace "+N más" cuando un día tiene más citas de las que caben */
+.rbc-show-more {
+  font-size: 11px;
+  font-weight: 700;
+  color: #4f8fdd;
+  background: transparent;
+}
+
+.rbc-show-more:hover {
+  text-decoration: underline;
+}
+
+/* Popup que se abre al darle clic a "+N más" */
+.rbc-overlay {
+  background: #ffffff;
+  border: 1px solid #e6e4e0;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  z-index: 70;
+}
+
+.rbc-overlay-header {
+  font-weight: 700;
+  padding: 4px 8px 8px;
+  border-bottom: 1px solid #f0efec;
+  margin-bottom: 4px;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 960px) {
@@ -414,6 +464,14 @@
 
   .rbc-toolbar-label {
     font-size: 16px;
+  }
+
+  .rbc-month-row {
+    min-height: 58px;
+  }
+
+  .rbc-event {
+    font-size: 10.5px;
   }
 
   .citas-sidebar {
