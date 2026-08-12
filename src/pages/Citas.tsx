@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../api";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./Citas.css";
+import OfflineBanner from "../offline/OfflineBanner";
 
 const locales = { es };
 const localizer = dateFnsLocalizer({
@@ -277,6 +278,7 @@ export default function Citas() {
 
   return (
     <div className="citas-page">
+      <OfflineBanner />
       <header className="citas-header">
         <button className="back-link" onClick={() => nav("/dashboard")}>
           ← Panel

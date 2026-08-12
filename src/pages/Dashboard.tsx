@@ -9,6 +9,7 @@ import {
   registerServiceWorker,
 } from "../notifications";
 import "./Dashboard.css";
+import OfflineBanner from "../offline/OfflineBanner";
 
 interface Profile {
   _id: string;
@@ -241,6 +242,7 @@ export default function Dashboard() {
   const location = useLocation();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
+  const [profileError, setProfileError] = useState("");
 
   const [gastoStats, setGastoStats] = useState<GastoStats | null>(null);
   const [balance, setBalance] = useState<BalanceResumen | null>(null);
@@ -293,17 +295,27 @@ export default function Dashboard() {
   const [consumoSuccess, setConsumoSuccess] = useState("");
   const [savingConsumo, setSavingConsumo] = useState(false);
 
-  useEffect(() => {
-    async function loadProfile() {
-      try {
-        const { data } = await api.get("/auth/profile");
-        setProfile(data.user);
-      } catch {
+  async function loadProfile() {
+    try {
+      setLoading(true);
+      const { data } = await api.get("/auth/profile");
+      setProfile(data.user);
+      setProfileError("");
+    } catch (err: any) {
+      if (err.response?.status === 401) {
+        // El token ya no es válido de verdad (expiró o se revocó) — ahí sí cerramos sesión.
         handleLogout();
-      } finally {
-        setLoading(false);
+      } else {
+        // Falla de red, servidor dormido despertando (cold start), timeout, etc.
+        // No cerramos sesión por esto; solo avisamos y dejamos reintentar.
+        setProfileError("No se pudo conectar con el servidor. Revisa tu conexión e intenta de nuevo.");
       }
+    } finally {
+      setLoading(false);
     }
+  }
+
+  useEffect(() => {
     loadProfile();
     loadResumen();
 
@@ -625,6 +637,17 @@ export default function Dashboard() {
     );
   }
 
+  if (profileError) {
+    return (
+      <div className="dashboard-loading dashboard-error">
+        <p>{profileError}</p>
+        <button className="btn primary" onClick={loadProfile}>
+          Reintentar
+        </button>
+      </div>
+    );
+  }
+
   const variacion = gastoStats?.variacionPorcentual ?? 0;
   const proximaCita = proximasCitas[0];
   const todoEnOrden = insumosBajos.length === 0 && (balance?.balanceMesActual ?? 0) >= 0;
@@ -632,6 +655,7 @@ export default function Dashboard() {
 
   return (
     <div className="dash-shell">
+      <OfflineBanner />
       <aside className="dash-sidebar">
         <div className="dash-brand">
           <span className="dash-brand-name">

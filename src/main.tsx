@@ -15,8 +15,16 @@ import Clientes from "./pages/Clientes";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Insumos from "./pages/Insumos";
 import Ingresos from "./pages/Ingresos";
+import { registerServiceWorker } from "./notifications";
+import { initSyncEngine } from "./offline/sync";
 
 import "./index.css";
+
+// Registrar el service worker (cachea la app para que funcione sin internet)
+// y arrancar el motor de sincronización lo antes posible, no hasta que se
+// entre al Dashboard.
+registerServiceWorker().catch(() => {});
+initSyncEngine();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

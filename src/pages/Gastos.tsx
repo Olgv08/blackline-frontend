@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api";
 import "./Gastos.css";
+import OfflineBanner from "../offline/OfflineBanner";
 
 interface Gasto {
   _id: string;
@@ -190,6 +191,7 @@ export default function Gastos() {
 
   return (
     <div className="gastos-page">
+      <OfflineBanner />
       <header className="gastos-header">
         <button className="back-link" onClick={() => nav("/dashboard")}>
           ← Panel

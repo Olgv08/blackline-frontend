@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api";
 import "./Insumos.css";
+import OfflineBanner from "../offline/OfflineBanner";
 
 type Categoria = "tintas" | "agujas" | "guantes" | "limpieza" | "consumibles" | "otros";
 type Unidad = "unidades" | "ml" | "g" | "cajas" | "pares" | "rollos";
@@ -198,6 +199,7 @@ export default function Insumos() {
 
   return (
     <div className="insumos-page">
+      <OfflineBanner />
       <header className="insumos-header">
         <button className="back-link" onClick={() => nav("/dashboard")}>
           ← Panel

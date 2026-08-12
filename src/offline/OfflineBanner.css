@@ -1,0 +1,40 @@
+.offline-banner {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+.offline-banner.offline {
+  background: #3a2a1a;
+  color: #f2c98a;
+}
+
+.offline-banner.online {
+  background: #17301f;
+  color: #a7e3bb;
+}
+
+.offline-banner-retry {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.offline-banner-retry:hover {
+  background: rgba(255, 255, 255, 0.25);
+}

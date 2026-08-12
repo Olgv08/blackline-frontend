@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api";
 import "./Clientes.css";
+import OfflineBanner from "../offline/OfflineBanner";
 
 interface Cliente {
   _id: string;
@@ -92,6 +93,7 @@ export default function Clientes() {
 
   return (
     <div className="clientes-page">
+      <OfflineBanner />
       <header className="clientes-header">
         <button className="back-link" onClick={() => nav("/dashboard")}>
           ← Panel

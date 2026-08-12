@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api";
 import "./Ingresos.css";
+import OfflineBanner from "../offline/OfflineBanner";
 
 interface Ingreso {
   _id: string;
@@ -252,6 +253,7 @@ export default function Ingresos() {
 
   return (
     <div className="ingresos-page">
+      <OfflineBanner />
       <header className="ingresos-header">
         <button className="back-link" onClick={() => nav("/dashboard")}>
           ← Panel
