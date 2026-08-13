@@ -423,6 +423,7 @@
   .citas-body {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
+    overflow: visible;
   }
 
   .citas-sidebar {
@@ -449,6 +450,12 @@
 
   .citas-calendar-wrap {
     padding: 12px;
+    overflow: visible;
+  }
+
+  .rbc-calendar {
+    height: auto !important;
+    min-height: 560px;
   }
 
   .rbc-toolbar {
